@@ -1,5 +1,5 @@
 # Repo of Names
-## Contributing to DSA Solutions
+## Contributing to Names
 Thank you for your interest in contributing to this project! We’re thrilled to have you participate. Below are some guidelines to help you get started.
 
 ## Steps to Contribute:
