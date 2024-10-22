@@ -1,0 +1,51 @@
+Name-Himanshi Dayal.
+
+Sorting: The array is first sorted to make it easier to find triplets and handle duplicates.
+
+Outer Loop: It iterates through each element of the array (let's call it arr[i]).
+
+Duplicate Check: If the current element is the same as the previous one, it skips to avoid duplicate triplets.
+
+Two Pointers: For each arr[i], it sets two pointers: j (right after i) and k (at the end of the array).
+
+Finding Triplets: The inner loop checks the sum of the triplet (arr[i], arr[j], arr[k]):
+
+If the sum is less than zero, it moves the j pointer to the right to increase the sum.
+If the sum is greater than zero, it moves the k pointer to the left to decrease the sum.
+If the sum is zero, it adds the triplet to the result and moves both pointers while skipping any duplicates.
+
+class Solution {
+public:
+    vector<vector<int>> threeSum(vector<int>& arr) {
+        int n=arr.size();
+        vector<vector<int>> ans;
+    sort(arr.begin(), arr.end());
+    for (int i = 0; i < n; i++) {
+        //remove duplicates:
+        if (i != 0 && arr[i] == arr[i - 1]) continue;
+
+        //moving 2 pointers:
+        int j = i + 1;
+        int k = n - 1;
+        while (j < k) {
+            int sum = arr[i] + arr[j] + arr[k];
+            if (sum < 0) {
+                j++;
+            }
+            else if (sum > 0) {
+                k--;
+            }
+            else {
+                vector<int> temp = {arr[i], arr[j], arr[k]};
+                ans.push_back(temp);
+                j++;
+                k--;
+                //skip the duplicates:
+                while (j < k && arr[j] == arr[j - 1]) j++;
+                while (j < k && arr[k] == arr[k + 1]) k--;
+            }
+        }
+    }
+    return ans;
+    }
+};
