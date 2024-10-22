@@ -5,7 +5,8 @@ Thank you for your interest in contributing to this project! We’re thrilled to
 ## Steps to Contribute:
 
 1. **Raise an Issue**
-   - Before making any changes, create an issue in this repository with the title `Add <your-name>`.
+   - Before making any changes, create an issue in this repository with the title `Add <something> <your-name>`.
+   - Replace `<something>` with your program title.
    - Replace `<your-name>` with your actual name or use an alias if you prefer.
 
 2. **Create a New File**
@@ -16,7 +17,11 @@ Thank you for your interest in contributing to this project! We’re thrilled to
    The content of the file should be formatted as follows:
    ```
    Name: <your-name>
+   
+   <program>
    ```
+   
+   
 4. **Submit a Pull Request**
    - After completing the file, commit your changes and submit a pull request (PR) referencing the issue you created.
 
