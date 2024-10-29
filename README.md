@@ -10,8 +10,9 @@ Thank you for your interest in contributing to this project! We’re thrilled to
    - Replace `<your-name>` with your actual name or use an alias if you prefer.
 
 2. **Create a New File**
-   - Once the issue is approved, create a file named `<your-name>.txt`.
+   - Once the issue is approved, create a file named `<your-name>_<binarysearch>.py`.
    - Replace `<your-name>` with your actual name (e.g., `john`).
+   - Replace `<binarysearch>` with your code title.
 
 3. **File Content Format**
    The content of the file should be formatted as follows:
