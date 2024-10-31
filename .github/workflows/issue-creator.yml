@@ -1,4 +1,4 @@
-name: Auto Create Issue in External Repo
+name: Auto Create Issue
 
 on:
   schedule:
@@ -12,15 +12,14 @@ jobs:
       - name: Create Issue
         uses: actions/github-script@v6
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}  # Uses the default token
           script: |
-            const repo = 'owner/repo_name'; // Replace with the target repo's owner and name
             const title = 'Automated Issue Title';
             const body = 'This is an automatically generated issue.';
 
             const response = await github.issues.create({
-              owner: 'owner', // Replace with the target repo's owner
-              repo: 'repo_name', // Replace with the target repo's name
+              owner: context.repo.owner,
+              repo: context.repo.repo,
               title: title,
               body: body,
             });
