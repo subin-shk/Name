@@ -1,27 +1,18 @@
-name: Auto Create Issue
+name: Create Issue Every Minute
 
 on:
   schedule:
-    - cron: '* * * * *'  # Runs every minute
-  workflow_dispatch:  # Allows manual trigger
+    - cron: '* * * * *'  # This will run the action every minute
 
 jobs:
-  create-issue:
+  create_issue:
     runs-on: ubuntu-latest
     steps:
-      - name: Create Issue
-        uses: actions/github-script@v6
+      - name: Create GitHub Issue
+        uses: peter-evans/create-issue@v2
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}  # Uses the default token
-          script: |
-            const title = 'Automated Issue Title';
-            const body = 'This is an automatically generated issue.';
-
-            const response = await github.issues.create({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              title: title,
-              body: body,
-            });
-
-            console.log('Issue created successfully:', response.data.html_url);
+          title: 'Automated Issue - {{ github.run_id }}'
+          body: 'This issue was automatically created by GitHub Actions at {{ github.event.schedule }}.'
+          labels: 'automated'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
