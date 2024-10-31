@@ -1,17 +1,28 @@
-name: Auto Issue Creator
+name: Auto Create Issue in External Repo
 
 on:
   schedule:
-    - cron: '0 * * * *'  # Runs every hour
+    - cron: '* * * * *'  # Runs every minute
   workflow_dispatch:  # Allows manual trigger
 
 jobs:
   create-issue:
     runs-on: ubuntu-latest
     steps:
-      - name: Create GitHub Issue
-        uses: peter-evans/create-issue-from-file@v3
+      - name: Create Issue
+        uses: actions/github-script@v6
         with:
-          title: 'Automated Issue Title'
-          content-filepath: 'issue-template.md'  # Path to your issue template
-          labels: 'bug, automation'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const repo = 'owner/repo_name'; // Replace with the target repo's owner and name
+            const title = 'Automated Issue Title';
+            const body = 'This is an automatically generated issue.';
+
+            const response = await github.issues.create({
+              owner: 'owner', // Replace with the target repo's owner
+              repo: 'repo_name', // Replace with the target repo's name
+              title: title,
+              body: body,
+            });
+
+            console.log('Issue created successfully:', response.data.html_url);
